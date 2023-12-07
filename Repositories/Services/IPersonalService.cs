@@ -2,9 +2,8 @@ using ProgramTest.Models;
 
 namespace ProgramTest.Repositories.Services;
 
-public interface IPersonalService
+public interface IPersonalService : IBaseService<Personal>
 {
-    public Task<List<Personal>> GetPersonalListAsync();
-    public Task<int> InsertDataAsync(List<PersonalType> personal);
+    public Task InsertDataAsync(List<PersonalType> personal);
 
 }

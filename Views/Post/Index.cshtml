@@ -1,0 +1,49 @@
+
+@model IEnumerable<Personal>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="GenerateData">Generate New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hobi)
+        </th>
+         <th>
+            @Html.DisplayNameFor(model => model.Umur)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Nama)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Gender.Nama)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Hobi.Nama)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Umur)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

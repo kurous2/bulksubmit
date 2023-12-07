@@ -16,13 +16,7 @@ public class PersonalRepository : IPersonalService
         _dbContext = dbContext;
     }
 
-    public async Task<List<Personal>> GetPersonalListAsync()
-    {
-        var result = await _dbContext.tblT_Personal.ToListAsync();
-        return result;
-    }
-
-    public async Task<int> InsertDataAsync(List<PersonalType> personal)
+    public async Task InsertDataAsync(List<PersonalType> personal)
     {
         var param = new SqlParameter("@PersonalData", SqlDbType.Structured)
         {
@@ -30,7 +24,7 @@ public class PersonalRepository : IPersonalService
             Value = ToDataTable(personal)
         };
         
-        return await _dbContext.Database.ExecuteSqlRawAsync("EXEC dbo.SPInsertData @PersonalData", param);
+        await _dbContext.Database.ExecuteSqlRawAsync("EXEC dbo.SPInsertData @PersonalData", param);
     }
 
      public static DataTable ToDataTable<T>(List<T> items)
@@ -66,4 +60,10 @@ public class PersonalRepository : IPersonalService
         return dataTable;
     }
 
+    public async Task<List<Personal>> ToListAsync()
+    {
+        var result = await _dbContext.tblT_Personal.Include(p=>p.Gender).Include(p=>p.Hobi).ToListAsync();
+
+        return result;
+    }
 }

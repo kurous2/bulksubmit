@@ -134,3 +134,4 @@ D:\work\Adaya Solusi\ProgramTest\bin\Debug\net8.0\runtimes\win\lib\net6.0\System
 D:\work\Adaya Solusi\ProgramTest\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\work\Adaya Solusi\ProgramTest\obj\Debug\net8.0\ProgramTest.csproj.AssemblyReference.cache
 D:\work\Adaya Solusi\ProgramTest\obj\Debug\net8.0\ProgramTest.csproj.CopyComplete
+D:\work\Adaya Solusi\ProgramTest\obj\Debug\net8.0\ProgramTest.sourcelink.json

@@ -6,31 +6,27 @@ using ProgramTest.Repositories.Services;
 
 namespace ProgramTest.Controllers;
 
-public class HomeController : Controller
+public class PostController : Controller
 {
     // private readonly IPersonalService _personalService;
     private readonly IPersonalService _svc;
 
-    public HomeController(IPersonalService svc)
+    public PostController(IPersonalService svc)
     {
         // _personalService = personalService;
         _svc = svc;
     }
 
-    public IActionResult Index()
+    
+    public IActionResult GenerateData()
     {
-        return View();
+        return View("BulkSubmit");
     }
 
-    public IActionResult Privacy()
+    public async Task<IActionResult> Index()
     {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        var result = await _svc.ToListAsync();
+        return View(result);
     }
 
     [HttpPost]
@@ -39,7 +35,7 @@ public class HomeController : Controller
         try
         {
             await _svc.InsertDataAsync(personalData);
-            return View();
+            return Ok();
         }
         catch (Exception ex)
         {
