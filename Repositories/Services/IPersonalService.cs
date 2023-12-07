@@ -4,6 +4,6 @@ namespace ProgramTest.Repositories.Services;
 
 public interface IPersonalService : IBaseService<Personal>
 {
-    public Task InsertDataAsync(List<PersonalType> personal);
+    public Task<int> InsertDataAsync(List<PersonalType> personal);
 
 }

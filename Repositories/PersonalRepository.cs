@@ -16,7 +16,7 @@ public class PersonalRepository : IPersonalService
         _dbContext = dbContext;
     }
 
-    public async Task InsertDataAsync(List<PersonalType> personal)
+    public async Task<int> InsertDataAsync(List<PersonalType> personal)
     {
         var param = new SqlParameter("@PersonalData", SqlDbType.Structured)
         {
@@ -24,7 +24,7 @@ public class PersonalRepository : IPersonalService
             Value = ToDataTable(personal)
         };
         
-        await _dbContext.Database.ExecuteSqlRawAsync("EXEC dbo.SPInsertData @PersonalData", param);
+        return await _dbContext.Database.ExecuteSqlRawAsync("EXEC dbo.SPInsertData @PersonalData", param);
     }
 
      public static DataTable ToDataTable<T>(List<T> items)
